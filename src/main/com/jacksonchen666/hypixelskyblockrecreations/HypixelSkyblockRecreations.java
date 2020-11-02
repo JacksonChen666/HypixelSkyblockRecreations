@@ -1,16 +1,17 @@
-package com.jacksonchen666.template;
+package com.jacksonchen666.hypixelskyblockrecreations;
 
+import com.jacksonchen666.hypixelskyblockrecreations.commands.HSRCommand;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 
-public class Template extends JavaPlugin {
+public class HypixelSkyblockRecreations extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        new com.jacksonchen666.template.commands.Template(this);
+        new HSRCommand(this);
         getServer().getPluginManager().registerEvents(new Listener(), this);
     }
 

@@ -1,4 +1,4 @@
-package com.jacksonchen666.template;
+package com.jacksonchen666.hypixelskyblockrecreations;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerLoginEvent;

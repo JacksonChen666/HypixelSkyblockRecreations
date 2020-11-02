@@ -1,6 +1,6 @@
-package com.jacksonchen666.template.commands;
+package com.jacksonchen666.hypixelskyblockrecreations.commands;
 
-import com.jacksonchen666.template.ChatColors;
+import com.jacksonchen666.hypixelskyblockrecreations.utils.ChatColors;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,11 +9,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
-public class Template implements CommandExecutor {
+public class HSRCommand implements CommandExecutor {
     private final JavaPlugin plugin;
-    public static final String commandName = "template";
+    public static final String commandName = "hypixelskyblockrecreations";
 
-    public Template(JavaPlugin plugin) {
+    public HSRCommand(JavaPlugin plugin) {
         this.plugin = plugin;
 
         Objects.requireNonNull(plugin.getCommand(commandName)).setExecutor(this);
@@ -31,7 +31,7 @@ public class Template implements CommandExecutor {
         }
 
         Player p = (Player) commandSender;
-        p.sendMessage("This is a template command. This has nothing special.");
+        p.sendMessage("This is a hypixelskyblockrecreations command. This has nothing special.");
         return true;
     }
 }

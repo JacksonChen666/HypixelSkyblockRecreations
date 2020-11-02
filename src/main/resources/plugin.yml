@@ -1,18 +1,19 @@
-name: Template
-main: com.jacksonchen666.template.Template
+name: HypixelSkyblockRecreations
+main: com.jacksonchen666.hypixelskyblockrecreations.HypixelSkyblockRecreations
 author: JacksonChen666
 api-version: "1.16"
 version: @plugin.version@
-description: A template plugin. The creator forgot to change this.
+description: Hypixel Skyblock recreations.
 
 commands:
-  template:
-    description: A template command
+  hypixelskyblockRecreations:
+    description: A hypixelskyblockrecreations command
+    aliases: hsr
 
 permissions:
-  Template:
-    default: not op
+  HypixelSkybockRecreations.admin:
+    default: op
     children:
-      Template.Template: true
-  Template.Template:
-    description: A template permission
+      HypixelSkybockRecreations.replanting: true
+  HypixelSkybockRecreations.replanting:
+    description: Replanting item
