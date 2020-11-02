@@ -1,17 +1,22 @@
 package com.jacksonchen666.hypixelskyblockrecreations;
 
 import com.jacksonchen666.hypixelskyblockrecreations.commands.HSRCommand;
+import com.jacksonchen666.hypixelskyblockrecreations.enchantments.CustomEnchantments;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 
 public class HypixelSkyblockRecreations extends JavaPlugin {
+    private static CustomEnchantments customEnchantments;
+
     @Override
     public void onEnable() {
         saveDefaultConfig();
         new HSRCommand(this);
+        customEnchantments = new CustomEnchantments(this);
         getServer().getPluginManager().registerEvents(new Listener(), this);
     }
 
@@ -31,5 +36,9 @@ public class HypixelSkyblockRecreations extends JavaPlugin {
         catch (IOException | org.bukkit.configuration.InvalidConfigurationException e) {
             e.printStackTrace();
         }
+    }
+
+    public static CustomEnchantments getCustomEnchantments() {
+        return customEnchantments;
     }
 }

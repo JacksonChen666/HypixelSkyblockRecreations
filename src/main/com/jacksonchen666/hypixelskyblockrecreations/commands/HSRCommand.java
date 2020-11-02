@@ -1,10 +1,16 @@
 package com.jacksonchen666.hypixelskyblockrecreations.commands;
 
+import com.jacksonchen666.hypixelskyblockrecreations.HypixelSkyblockRecreations;
+import com.jacksonchen666.hypixelskyblockrecreations.enchantments.CustomEnchantments;
 import com.jacksonchen666.hypixelskyblockrecreations.utils.ChatColors;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -31,7 +37,11 @@ public class HSRCommand implements CommandExecutor {
         }
 
         Player p = (Player) commandSender;
-        p.sendMessage("This is a hypixelskyblockrecreations command. This has nothing special.");
+        ItemStack book = new ItemStack(Material.ENCHANTED_BOOK);
+        ItemMeta meta = book.getItemMeta();
+        Objects.requireNonNull(meta).addEnchant(HypixelSkyblockRecreations.getCustomEnchantments().REPLANTING, 1, false);
+        book.setItemMeta(meta);
+        p.getInventory().addItem(book);
         return true;
     }
 }

@@ -4,12 +4,22 @@ import com.jacksonchen666.hypixelskyblockrecreations.enchantments.replanting.Rep
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.lang.reflect.Field;
+
 public class CustomEnchantments {
-    private JavaPlugin plugin;
+    public Enchantment REPLANTING;
 
     public CustomEnchantments(JavaPlugin plugin) {
-        this.plugin = plugin;
+        try {
+            Field f = Enchantment.class.getDeclaredField("acceptingNew");
+            f.setAccessible(true);
+            f.set(null, true);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+        REPLANTING = new Replanting(plugin);
+        Enchantment.stopAcceptingRegistrations();
     }
-
-    public final Enchantment REPLANTING = new Replanting(plugin);
 }

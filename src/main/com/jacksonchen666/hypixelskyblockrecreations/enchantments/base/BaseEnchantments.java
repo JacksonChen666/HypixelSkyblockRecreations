@@ -7,7 +7,14 @@ import org.bukkit.inventory.ItemStack;
 public abstract class BaseEnchantments extends Enchantment {
     public BaseEnchantments(NamespacedKey key) {
         super(key);
-        Enchantment.registerEnchantment(this);
+        try {
+            Enchantment.registerEnchantment(this);
+        }
+        catch (IllegalArgumentException e) {
+            if (!e.getMessage().equals("Cannot set already-set enchantment")) {
+                throw e;
+            }
+        }
     }
 
     @Override
