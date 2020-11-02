@@ -1,0 +1,18 @@
+name: Template
+main: com.jacksonchen666.template.Template
+author: JacksonChen666
+api-version: "1.16"
+version: @plugin.version@
+description: A template plugin. The creator forgot to change this.
+
+commands:
+  template:
+    description: A template command
+
+permissions:
+  Template:
+    default: not op
+    children:
+      Template.Template: true
+  Template.Template:
+    description: A template permission
