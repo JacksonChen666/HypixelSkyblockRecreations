@@ -37,7 +37,7 @@ public class HSRCommand implements CommandExecutor {
         }
 
         Player p = (Player) commandSender;
-        ItemStack book = new ItemStack(Material.ENCHANTED_BOOK);
+        ItemStack book = new ItemStack(Material.STONE_HOE);
         ItemMeta meta = book.getItemMeta();
         Objects.requireNonNull(meta).addEnchant(HypixelSkyblockRecreations.getCustomEnchantments().REPLANTING, 1, false);
         book.setItemMeta(meta);

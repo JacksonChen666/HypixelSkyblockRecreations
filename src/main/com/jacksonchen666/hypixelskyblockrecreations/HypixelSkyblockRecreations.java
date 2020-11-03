@@ -2,6 +2,7 @@ package com.jacksonchen666.hypixelskyblockrecreations;
 
 import com.jacksonchen666.hypixelskyblockrecreations.commands.HSRCommand;
 import com.jacksonchen666.hypixelskyblockrecreations.enchantments.CustomEnchantments;
+import com.jacksonchen666.hypixelskyblockrecreations.enchantments.replanting.Replant;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,7 +18,7 @@ public class HypixelSkyblockRecreations extends JavaPlugin {
         saveDefaultConfig();
         new HSRCommand(this);
         customEnchantments = new CustomEnchantments(this);
-        getServer().getPluginManager().registerEvents(new Listener(), this);
+        getServer().getPluginManager().registerEvents(new Replant(), this);
     }
 
     @Override
