@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.jacksonchen666'
+group = 'com.jacksonchen666.hypixelskyblockrecreations'
 version = '1.0.0'
 
 import org.apache.tools.ant.filters.*
@@ -18,8 +18,9 @@ repositories {
 }
 
 dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.16.3-R0.1-SNAPSHOT'
     testImplementation 'junit:junit:4.12'
-    compileOnly 'org.spigotmc:spigot-api:1.16.3-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
+    testImplementation 'com.github.seeseemelk:MockBukkit-v1.16:0.13.0'
 }
 
 sourceSets {
