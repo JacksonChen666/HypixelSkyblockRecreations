@@ -6,7 +6,7 @@ version: @plugin.version@
 description: Hypixel Skyblock recreations.
 
 commands:
-  hypixelskyblockRecreations:
+  hypixelskyblockrecreations:
     description: A hypixelskyblockrecreations command
     aliases: hsr
 
