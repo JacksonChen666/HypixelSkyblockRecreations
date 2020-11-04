@@ -54,4 +54,5 @@ public abstract class BaseEnchantments extends Enchantment {
     }
 
     public abstract void giveItem(Player player);
+    public abstract ItemStack createItem();
 }

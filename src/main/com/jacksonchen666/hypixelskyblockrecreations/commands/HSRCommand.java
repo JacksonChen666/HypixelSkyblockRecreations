@@ -27,6 +27,10 @@ public class HSRCommand implements CommandExecutor, TabCompleter {
         enchants.put(key, enchantment);
     }
 
+    public static Map<String, BaseEnchantments> getEnchants() {
+        return enchants;
+    }
+
     private String getText(String path) {
         return plugin.getConfig().getString(path);
     }

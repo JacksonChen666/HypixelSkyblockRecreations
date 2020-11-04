@@ -28,11 +28,16 @@ public class Replanting extends BaseEnchantments {
 
     @Override
     public void giveItem(Player player) {
+        player.getInventory().addItem(createItem());
+    }
+
+    @Override
+    public ItemStack createItem() {
         ItemStack item = new ItemStack(Material.STONE_HOE);
         ItemMeta meta = item.getItemMeta();
         Objects.requireNonNull(meta).addEnchant(HypixelSkyblockRecreations.getCustomEnchantments().REPLANTING, 1, false);
         item.setItemMeta(meta);
-        player.getInventory().addItem(item);
+        return item;
     }
 
     @Override
