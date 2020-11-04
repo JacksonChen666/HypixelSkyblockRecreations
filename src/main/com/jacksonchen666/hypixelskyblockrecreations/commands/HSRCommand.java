@@ -1,31 +1,30 @@
 package com.jacksonchen666.hypixelskyblockrecreations.commands;
 
-import com.jacksonchen666.hypixelskyblockrecreations.HypixelSkyblockRecreations;
-import com.jacksonchen666.hypixelskyblockrecreations.enchantments.CustomEnchantments;
+import com.jacksonchen666.hypixelskyblockrecreations.enchantments.base.BaseEnchantments;
 import com.jacksonchen666.hypixelskyblockrecreations.utils.ChatColors;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
 
 public class HSRCommand implements CommandExecutor, TabCompleter {
-    private final JavaPlugin plugin;
     @SuppressWarnings("SpellCheckingInspection")
     public static final String commandName = "hypixelskyblockrecreations";
-    private static final Map<String, ItemStack> items = new HashMap<>();
+    private static final Map<String, BaseEnchantments> enchants = new HashMap<>();
+    private final JavaPlugin plugin;
 
     public HSRCommand(JavaPlugin plugin) {
         this.plugin = plugin;
 
         Objects.requireNonNull(plugin.getCommand(commandName)).setExecutor(this);
+    }
+
+    public static void putItems(String key, BaseEnchantments enchantment) {
+        enchants.put(key, enchantment);
     }
 
     private String getText(String path) {
@@ -34,10 +33,6 @@ public class HSRCommand implements CommandExecutor, TabCompleter {
 
     private String getText(String path, String prefix) {
         return getText(path).replace("{prefix}", prefix);
-    }
-
-    public static void putItems(String key, ItemStack itemStack) {
-        items.put(key, itemStack);
     }
 
     @Override
@@ -51,9 +46,9 @@ public class HSRCommand implements CommandExecutor, TabCompleter {
         String prefix = getText("prefix");
         if (args.length >= 2) {
             if (args[0].equals("giveItem")) {
-                for (String key : items.keySet()) {
+                for (String key : enchants.keySet()) {
                     if (args[1].equals(key)) {
-                        p.getInventory().addItem(items.get(key));
+                        enchants.get(key).giveItem(p);
                         return true;
                     }
                 }
@@ -73,7 +68,7 @@ public class HSRCommand implements CommandExecutor, TabCompleter {
             return Collections.singletonList("giveItem");
         }
         else if (args.length == 1) {
-            return new ArrayList<>(items.keySet());
+            return new ArrayList<>(enchants.keySet());
         }
         else {
             return Collections.emptyList();

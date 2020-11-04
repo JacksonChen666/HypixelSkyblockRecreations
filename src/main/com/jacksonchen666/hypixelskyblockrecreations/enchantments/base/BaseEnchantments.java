@@ -2,6 +2,7 @@ package com.jacksonchen666.hypixelskyblockrecreations.enchantments.base;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class BaseEnchantments extends Enchantment {
@@ -51,4 +52,6 @@ public abstract class BaseEnchantments extends Enchantment {
     public boolean conflictsWith(Enchantment other) {
         return false;
     }
+
+    public abstract void giveItem(Player player);
 }

@@ -6,6 +6,7 @@ import com.jacksonchen666.hypixelskyblockrecreations.enchantments.base.BaseEncha
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.EnchantmentTarget;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,16 +18,21 @@ public class Replanting extends BaseEnchantments {
 
     public Replanting(JavaPlugin plugin) {
         super(new NamespacedKey(plugin, name));
-        ItemStack item = new ItemStack(Material.STONE_HOE);
-        ItemMeta meta = item.getItemMeta();
-        Objects.requireNonNull(meta).addEnchant(HypixelSkyblockRecreations.getCustomEnchantments().REPLANTING, 1, false);
-        item.setItemMeta(meta);
-        HSRCommand.putItems(name.toLowerCase(), item);
+        HSRCommand.putItems(name.toLowerCase(), this);
     }
 
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void giveItem(Player player) {
+        ItemStack item = new ItemStack(Material.STONE_HOE);
+        ItemMeta meta = item.getItemMeta();
+        Objects.requireNonNull(meta).addEnchant(HypixelSkyblockRecreations.getCustomEnchantments().REPLANTING, 1, false);
+        item.setItemMeta(meta);
+        player.getInventory().addItem(item);
     }
 
     @Override
