@@ -27,7 +27,7 @@ public class ReplantTest {
         server.addSimpleWorld("world");
         player1 = server.addPlayer();
         MockBukkit.load(HypixelSkyblockRecreations.class);
-        player1.setItemInHand(HSRCommand.getEnchants().get("replanting").createItem());
+        player1.setItemInHand(HSRCommand.getItems().get("replanting").createItem());
     }
 
     @Test

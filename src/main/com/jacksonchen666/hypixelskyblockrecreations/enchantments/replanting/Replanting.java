@@ -18,7 +18,7 @@ public class Replanting extends BaseEnchantments {
 
     public Replanting(JavaPlugin plugin) {
         super(new NamespacedKey(plugin, name));
-        HSRCommand.putItems(name.toLowerCase(), this);
+        HSRCommand.putItem(name.toLowerCase(), this);
     }
 
     @Override

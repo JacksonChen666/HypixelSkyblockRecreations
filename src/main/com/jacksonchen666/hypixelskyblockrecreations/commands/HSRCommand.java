@@ -1,5 +1,6 @@
 package com.jacksonchen666.hypixelskyblockrecreations.commands;
 
+import com.jacksonchen666.hypixelskyblockrecreations.base.BaseItem;
 import com.jacksonchen666.hypixelskyblockrecreations.enchantments.base.BaseEnchantments;
 import com.jacksonchen666.hypixelskyblockrecreations.utils.ChatColors;
 import org.bukkit.command.Command;
@@ -14,7 +15,7 @@ import java.util.*;
 public class HSRCommand implements CommandExecutor, TabCompleter {
     @SuppressWarnings("SpellCheckingInspection")
     public static final String commandName = "hypixelskyblockrecreations";
-    private static final Map<String, BaseEnchantments> enchants = new HashMap<>();
+    private static final Map<String, BaseItem> items = new HashMap<>();
     private final JavaPlugin plugin;
 
     public HSRCommand(JavaPlugin plugin) {
@@ -23,12 +24,12 @@ public class HSRCommand implements CommandExecutor, TabCompleter {
         Objects.requireNonNull(plugin.getCommand(commandName)).setExecutor(this);
     }
 
-    public static void putItems(String key, BaseEnchantments enchantment) {
-        enchants.put(key, enchantment);
+    public static void putItem(String key, BaseEnchantments item) {
+        items.put(key, item);
     }
 
-    public static Map<String, BaseEnchantments> getEnchants() {
-        return enchants;
+    public static Map<String, BaseItem> getItems() {
+        return items;
     }
 
     private String getText(String path) {
@@ -50,9 +51,9 @@ public class HSRCommand implements CommandExecutor, TabCompleter {
         String prefix = getText("prefix");
         if (args.length >= 2) {
             if (args[0].equals("giveItem")) {
-                for (String key : enchants.keySet()) {
+                for (String key : items.keySet()) {
                     if (args[1].equals(key)) {
-                        enchants.get(key).giveItem(p);
+                        items.get(key).giveItem(p);
                         return true;
                     }
                 }
@@ -73,7 +74,7 @@ public class HSRCommand implements CommandExecutor, TabCompleter {
                 return Collections.singletonList("giveItem");
             case 1:
                 if (args[0].equals("giveItem")) {
-                    return new ArrayList<>(enchants.keySet());
+                    return new ArrayList<>(items.keySet());
                 }
             default:
                 return Collections.emptyList();
