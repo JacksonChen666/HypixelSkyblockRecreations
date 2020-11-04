@@ -68,14 +68,15 @@ public class HSRCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (args.length == 0) {
-            return Collections.singletonList("giveItem");
-        }
-        else if (args.length == 1) {
-            return new ArrayList<>(enchants.keySet());
-        }
-        else {
-            return Collections.emptyList();
+        switch (args.length - 1) {
+            case 0:
+                return Collections.singletonList("giveItem");
+            case 1:
+                if (args[0].equals("giveItem")) {
+                    return new ArrayList<>(enchants.keySet());
+                }
+            default:
+                return Collections.emptyList();
         }
     }
 }
