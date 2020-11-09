@@ -1,7 +1,6 @@
 package com.jacksonchen666.hypixelskyblockrecreations.commands;
 
 import com.jacksonchen666.hypixelskyblockrecreations.base.BaseItem;
-import com.jacksonchen666.hypixelskyblockrecreations.enchantments.base.BaseEnchantments;
 import com.jacksonchen666.hypixelskyblockrecreations.utils.ChatColors;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,7 +23,7 @@ public class HSRCommand implements CommandExecutor, TabCompleter {
         Objects.requireNonNull(plugin.getCommand(commandName)).setExecutor(this);
     }
 
-    public static void putItem(String key, BaseEnchantments item) {
+    public static void putItem(String key, BaseItem item) {
         items.put(key, item);
     }
 

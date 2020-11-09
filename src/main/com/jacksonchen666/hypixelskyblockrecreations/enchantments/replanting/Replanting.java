@@ -1,6 +1,7 @@
 package com.jacksonchen666.hypixelskyblockrecreations.enchantments.replanting;
 
 import com.jacksonchen666.hypixelskyblockrecreations.HypixelSkyblockRecreations;
+import com.jacksonchen666.hypixelskyblockrecreations.base.BaseItem;
 import com.jacksonchen666.hypixelskyblockrecreations.commands.HSRCommand;
 import com.jacksonchen666.hypixelskyblockrecreations.enchantments.base.BaseEnchantments;
 import org.bukkit.Material;

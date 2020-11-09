@@ -2,6 +2,7 @@ package com.jacksonchen666.hypixelskyblockrecreations;
 
 import com.jacksonchen666.hypixelskyblockrecreations.commands.HSRCommand;
 import com.jacksonchen666.hypixelskyblockrecreations.enchantments.CustomEnchantments;
+import com.jacksonchen666.hypixelskyblockrecreations.utils.CustomUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,12 +13,14 @@ import java.io.IOException;
 
 public class HypixelSkyblockRecreations extends JavaPlugin {
     private static CustomEnchantments customEnchantments;
+    private static CustomUtils customUtils;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         new HSRCommand(this);
         customEnchantments = new CustomEnchantments(this);
+        customUtils = new CustomUtils();
     }
 
     @Override
@@ -40,6 +43,10 @@ public class HypixelSkyblockRecreations extends JavaPlugin {
 
     public static CustomEnchantments getCustomEnchantments() {
         return customEnchantments;
+    }
+
+    public static CustomUtils getCustomUtils() {
+        return customUtils;
     }
 
     public HypixelSkyblockRecreations() {
