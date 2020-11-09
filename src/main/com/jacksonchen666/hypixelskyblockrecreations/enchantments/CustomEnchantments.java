@@ -3,13 +3,13 @@ package com.jacksonchen666.hypixelskyblockrecreations.enchantments;
 import com.jacksonchen666.hypixelskyblockrecreations.enchantments.replanting.Replanting;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
 
 public class CustomEnchantments {
     public Enchantment REPLANTING;
-    private JavaPlugin plugin;
 
     public CustomEnchantments(JavaPlugin plugin) {
         try {
@@ -21,13 +21,8 @@ public class CustomEnchantments {
             e.printStackTrace();
             return;
         }
-        this.plugin = plugin;
-        REPLANTING = registerEnchantAndEvent(new Replanting(plugin));
+        PluginManager pluginManager = plugin.getServer().getPluginManager();
+        pluginManager.registerEvents((Listener) (REPLANTING = new Replanting(plugin)), plugin);
         Enchantment.stopAcceptingRegistrations();
-    }
-
-    private Enchantment registerEnchantAndEvent(Enchantment enchantment) {
-        plugin.getServer().getPluginManager().registerEvents((Listener) enchantment, plugin);
-        return enchantment;
     }
 }
