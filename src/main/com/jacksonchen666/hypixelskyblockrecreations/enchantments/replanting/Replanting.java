@@ -41,9 +41,7 @@ public class Replanting extends BaseEnchantments implements Listener {
     @Override
     public ItemStack createItem() {
         ItemStack item = new ItemStack(Material.STONE_HOE);
-        ItemMeta meta = item.getItemMeta();
-        Objects.requireNonNull(meta).addEnchant(HypixelSkyblockRecreations.getCustomEnchantments().REPLANTING, 1, false);
-        item.setItemMeta(meta);
+        item.addEnchantment(HypixelSkyblockRecreations.getCustomEnchantments().REPLANTING, 1);
         return item;
     }
 
