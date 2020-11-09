@@ -76,7 +76,6 @@ public class Replanting extends BaseEnchantments implements Listener {
             return;
         }
         Material requiredItem = materials.get(material);
-        System.out.println(event.getBlock());
         if (meta.hasEnchant(HypixelSkyblockRecreations.getCustomEnchantments().REPLANTING) &&
                 materials.containsKey(material) && inventory.contains(requiredItem)) {
             ItemStack[] contents = inventory.getContents();
