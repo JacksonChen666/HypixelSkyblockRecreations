@@ -61,7 +61,7 @@ public class HSRCommand implements CommandExecutor, TabCompleter {
             }
         }
         else {
-            p.sendMessage(ChatColors.color(getText("errors.missing_argument", prefix).replace("{arguments}", "action")));
+            p.sendMessage(ChatColors.color(getText("errors.missing_argument", prefix).replace("{argument}", "action")));
         }
         return false;
     }

@@ -28,27 +28,32 @@ public class SuperCompactor extends AGUI implements BaseItem, Listener {
         HSRCommand.putItem(name, this);
     }
 
+    public static boolean containsSuperCompactor(Inventory inventory) {
+        ItemStack superCompactor = HypixelSkyblockRecreations.getCustomUtils().SUPER_COMPACTOR;
+        ItemStack item;
+        try {
+            item = Arrays.stream(inventory.getContents()).filter(itemStack -> itemStack.isSimilar(superCompactor)).findFirst().orElseThrow(NullPointerException::new);
+        }
+        catch (NullPointerException e) {
+            return false;
+        }
+        return inventory.contains(superCompactor) && item.getEnchantmentLevel(Enchantment.DURABILITY) == 10;
+    }
+
     @Override
     public void giveItem(Player player) {
-        player.getInventory().addItem(createItem());
+        player.getInventory().addItem(HypixelSkyblockRecreations.getCustomUtils().SUPER_COMPACTOR);
     }
 
     @Override
     public ItemStack createItem() {
         ItemStack item = new ItemStack(Material.DISPENSER);
         ItemMeta meta = Objects.requireNonNull(item.getItemMeta());
-        meta.setUnbreakable(true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         item.setItemMeta(meta);
         item.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
-        return null;
-    }
-
-    public static boolean isSuperCompactor(Inventory inventory) {
-        ItemStack superCompactor = HypixelSkyblockRecreations.getCustomUtils().SUPER_COMPACTOR;
-        ItemStack item = Arrays.stream(inventory.getContents()).filter(itemStack -> itemStack == superCompactor).findFirst().orElseThrow();
-        return inventory.contains(superCompactor) && item.getEnchantmentLevel(Enchantment.DURABILITY) == 10;
+        return item;
     }
 
     @EventHandler
@@ -57,7 +62,7 @@ public class SuperCompactor extends AGUI implements BaseItem, Listener {
             return;
         }
         Inventory inventory = ((Player) event.getEntity()).getInventory();
-        if (isSuperCompactor(inventory)) {
+        if (containsSuperCompactor(inventory)) {
             // compact logic and checks
             System.out.println("Compactor!");
         }
@@ -65,10 +70,14 @@ public class SuperCompactor extends AGUI implements BaseItem, Listener {
 
     @EventHandler
     public void onClick(PlayerInteractEvent event) {
-        if (event.getItem() == HypixelSkyblockRecreations.getCustomUtils().SUPER_COMPACTOR) {
-            Player player = event.getPlayer();
+        openGUIOnClick(event.getPlayer());
+    }
+
+    public void openGUIOnClick(Player player) {
+        if (containsSuperCompactor(player.getInventory())) {
             Inventory GUI = Bukkit.createInventory(player, 27, "Super Compactor");
-            if (GUI.contains(Material.AIR)) {
+            boolean containsEmpty = Arrays.stream(GUI.getStorageContents()).anyMatch(Objects::isNull);
+            if (containsEmpty) {
                 ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
                 ItemStack item2 = new ItemStack(Material.GREEN_STAINED_GLASS_PANE);
                 ItemStack[] temp = new ItemStack[] {
@@ -78,16 +87,18 @@ public class SuperCompactor extends AGUI implements BaseItem, Listener {
                 };
                 GUI.setMaxStackSize(1);
                 GUI.setStorageContents(temp);
+                player.openInventory(GUI);
             }
-            player.openInventory(GUI);
         }
     }
 
     @Override
     public void onGUIClick(InventoryClickEvent event) {
-        int slot = event.getSlot();
-        if (slot <= 10 || slot >= 18) {
-            event.setCancelled(true);
+        if (event.getCurrentItem() == HypixelSkyblockRecreations.getCustomUtils().SUPER_COMPACTOR) {
+            int slot = event.getSlot();
+            if (slot <= 10 || slot >= 18) {
+                event.setCancelled(true);
+            }
         }
     }
 }

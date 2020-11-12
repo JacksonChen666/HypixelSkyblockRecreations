@@ -4,7 +4,7 @@ import com.jacksonchen666.hypixelskyblockrecreations.utils.supercompactor.SuperC
 import org.bukkit.inventory.ItemStack;
 
 public class CustomUtils {
-    public ItemStack SUPER_COMPACTOR;
+    public final ItemStack SUPER_COMPACTOR;
 
     public CustomUtils() {
         SUPER_COMPACTOR = new SuperCompactor().createItem();

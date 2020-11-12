@@ -5,6 +5,9 @@ plugins {
 group = 'com.jacksonchen666.hypixelskyblockrecreations'
 version = '1.0.0'
 
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 import org.apache.tools.ant.filters.*
 
 processResources { // matches the version in plugin.yml to what's in here (only with jar task, which is used by build tasks too)

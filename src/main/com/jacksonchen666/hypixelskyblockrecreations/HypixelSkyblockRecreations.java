@@ -3,6 +3,7 @@ package com.jacksonchen666.hypixelskyblockrecreations;
 import com.jacksonchen666.hypixelskyblockrecreations.commands.HSRCommand;
 import com.jacksonchen666.hypixelskyblockrecreations.enchantments.CustomEnchantments;
 import com.jacksonchen666.hypixelskyblockrecreations.utils.CustomUtils;
+import com.jacksonchen666.hypixelskyblockrecreations.utils.supercompactor.SuperCompactor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +22,7 @@ public class HypixelSkyblockRecreations extends JavaPlugin {
         new HSRCommand(this);
         customEnchantments = new CustomEnchantments(this);
         customUtils = new CustomUtils();
+        getServer().getPluginManager().registerEvents(new SuperCompactor(), this);
     }
 
     @Override

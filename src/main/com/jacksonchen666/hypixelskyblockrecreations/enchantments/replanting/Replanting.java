@@ -1,7 +1,6 @@
 package com.jacksonchen666.hypixelskyblockrecreations.enchantments.replanting;
 
 import com.jacksonchen666.hypixelskyblockrecreations.HypixelSkyblockRecreations;
-import com.jacksonchen666.hypixelskyblockrecreations.base.BaseItem;
 import com.jacksonchen666.hypixelskyblockrecreations.commands.HSRCommand;
 import com.jacksonchen666.hypixelskyblockrecreations.enchantments.base.BaseEnchantments;
 import org.bukkit.Material;
@@ -51,7 +50,7 @@ public class Replanting extends BaseEnchantments implements Listener {
         return EnchantmentTarget.TOOL;
     }
 
-    public static final Map<Material, Material> materials = new HashMap<>() {{
+    public static final Map<Material, Material> materials = new HashMap<Material, Material>() {{
         // block broken, required item to replant
         put(Material.WHEAT, Material.WHEAT_SEEDS);
         put(Material.COCOA, Material.COCOA_BEANS);
