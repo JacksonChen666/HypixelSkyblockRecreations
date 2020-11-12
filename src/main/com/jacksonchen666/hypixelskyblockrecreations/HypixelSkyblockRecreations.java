@@ -2,8 +2,6 @@ package com.jacksonchen666.hypixelskyblockrecreations;
 
 import com.jacksonchen666.hypixelskyblockrecreations.commands.HSRCommand;
 import com.jacksonchen666.hypixelskyblockrecreations.enchantments.CustomEnchantments;
-import com.jacksonchen666.hypixelskyblockrecreations.utils.CustomUtils;
-import com.jacksonchen666.hypixelskyblockrecreations.utils.supercompactor.SuperCompactor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,15 +12,24 @@ import java.io.IOException;
 
 public class HypixelSkyblockRecreations extends JavaPlugin {
     private static CustomEnchantments customEnchantments;
-    private static CustomUtils customUtils;
+
+    public HypixelSkyblockRecreations() {
+        super();
+    }
+
+    protected HypixelSkyblockRecreations(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) { // unit testing
+        super(loader, description, dataFolder, file);
+    }
+
+    public static CustomEnchantments getCustomEnchantments() {
+        return customEnchantments;
+    }
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         new HSRCommand(this);
         customEnchantments = new CustomEnchantments(this);
-        customUtils = new CustomUtils();
-        getServer().getPluginManager().registerEvents(new SuperCompactor(), this);
     }
 
     @Override
@@ -41,21 +48,5 @@ public class HypixelSkyblockRecreations extends JavaPlugin {
         catch (IOException | org.bukkit.configuration.InvalidConfigurationException e) {
             e.printStackTrace();
         }
-    }
-
-    public static CustomEnchantments getCustomEnchantments() {
-        return customEnchantments;
-    }
-
-    public static CustomUtils getCustomUtils() {
-        return customUtils;
-    }
-
-    public HypixelSkyblockRecreations() {
-        super();
-    }
-
-    protected HypixelSkyblockRecreations(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) { // unit testing
-        super(loader, description, dataFolder, file);
     }
 }
