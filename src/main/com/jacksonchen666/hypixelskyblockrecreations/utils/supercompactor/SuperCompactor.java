@@ -20,6 +20,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Set;
 
 public class SuperCompactor extends AGUI implements BaseItem, Listener {
     private static final String name = "SuperCompactor";
@@ -31,13 +32,19 @@ public class SuperCompactor extends AGUI implements BaseItem, Listener {
     public static boolean containsSuperCompactor(Inventory inventory) {
         ItemStack superCompactor = HypixelSkyblockRecreations.getCustomUtils().SUPER_COMPACTOR;
         ItemStack item;
+        Set<ItemFlag> meta;
         try {
             item = Arrays.stream(inventory.getContents()).filter(itemStack -> itemStack.isSimilar(superCompactor)).findFirst().orElseThrow(NullPointerException::new);
+            meta = Objects.requireNonNull(item.getItemMeta()).getItemFlags();
         }
         catch (NullPointerException e) {
+            String msg = "This is not an error. This stacktrace is just here because something was invalid. Please report a bug with this stacktrace if the Super Compactor doesn't work.";
+            System.err.println(msg);
+            e.printStackTrace();
+            System.err.println(msg);
             return false;
         }
-        return inventory.contains(superCompactor) && item.getEnchantmentLevel(Enchantment.DURABILITY) == 10;
+        return item.getEnchantmentLevel(Enchantment.DURABILITY) == 10 && meta.containsAll(Arrays.asList(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES));
     }
 
     @Override
@@ -95,10 +102,11 @@ public class SuperCompactor extends AGUI implements BaseItem, Listener {
     @Override
     public void onGUIClick(InventoryClickEvent event) {
         if (event.getCurrentItem() == HypixelSkyblockRecreations.getCustomUtils().SUPER_COMPACTOR) {
-            int slot = event.getSlot();
-            if (slot <= 10 || slot >= 18) {
-                event.setCancelled(true);
-            }
+            event.setCancelled(true);
+//            int slot = event.getSlot();
+//            if (slot <= 10 || slot >= 18) {
+//                event.setCancelled(true);
+//            }
         }
     }
 }
